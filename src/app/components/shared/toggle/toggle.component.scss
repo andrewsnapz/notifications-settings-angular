@@ -1,0 +1,64 @@
+.toggle-container {
+  display: inline-flex;
+}
+
+.toggle {
+  position: relative;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: var(--background-disabled-emphasize);
+    cursor: auto;
+  }
+
+  &-sm {
+    width: 2.25rem; // 36px;
+    height: 1.25rem; // 20px;
+  }
+
+  &-md {
+    width: 2.75rem; // 44px;
+    height: 1.5rem; // 24px;
+  }
+
+  &-deactive {
+    background-color: var(--background-secondary);
+  }
+
+  &-active {
+    background-color: var(--brand-primary-emphasize);
+  }
+}
+
+.toggle-ball {
+  position: absolute;
+  background-color: var(--background-primary);
+  border-radius: 50%;
+  box-shadow: var(--drop-shadow);
+  transform: translate(-50%, -50%); // puts ball in the middle
+  transition: all ease-in 0.1s;
+
+  &-sm {
+    width: 1rem; // 16px;
+    height: 1rem; // 16px;
+  }
+
+  &-md {
+    width: 1.25rem; // 20px;
+    height: 1.25rem; // 20px;
+  }
+
+  &-disabled {
+    background-color: var(--background-secondary-hover);
+  }
+
+  &-deactive {
+    left: 27%;
+  }
+
+  &-active {
+    left: 73%;
+  }
+}
