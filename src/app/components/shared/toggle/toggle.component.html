@@ -1,7 +1,8 @@
 <div [class]="this.toggleClasses().toggleContainer">
   <button
     [id]="id()"
-    type="switch"
+    role="switch"
+    type="button"
     [class]="this.toggleClasses().toggleControl"
     [attr.aria-checked]="isToggled()"
     [attr.aria-readonly]="isDisabled()"

@@ -41,17 +41,15 @@ export class ToggleComponent {
       ['visually-hidden']: this.isLabelHidden(),
     },
   }));
+  component: any;
 
   onToggleChange() {
-    console.log(this.isToggled());
     if (this.isToggled()) {
       this.onDeactiveToggle.emit();
     } else {
       this.onActiveToggle.emit();
     }
     this.isToggled.update((prev) => !prev);
-
-    console.log(this.isToggled());
   }
 }
 

@@ -13,6 +13,10 @@
     cursor: auto;
   }
 
+  &:hover {
+    background-color: var(--background-secondary-hover);
+  }
+
   &-sm {
     width: 2.25rem; // 36px;
     height: 1.25rem; // 20px;
@@ -55,10 +59,10 @@
   }
 
   &-deactive {
-    left: 27%;
+    left: 28%;
   }
 
   &-active {
-    left: 73%;
+    left: 72%;
   }
 }
