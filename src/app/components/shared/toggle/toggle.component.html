@@ -1,0 +1,21 @@
+<div [class]="this.toggleClasses().toggleContainer">
+  <button
+    [id]="id()"
+    role="switch"
+    type="button"
+    [class]="this.toggleClasses().toggleControl"
+    [attr.aria-checked]="isToggled()"
+    [attr.aria-labelledby]="`toggle-${id()}-label`"
+    [disabled]="isDisabled()"
+    (click)="onToggleChange()"
+  >
+    <span [class]="this.toggleClasses().toggleBall"></span>
+  </button>
+  <label [id]="`toggle-${id()}-label`" [class]="this.toggleClasses().label">
+    @if(this.isToggled()) {
+    {{ labelActiveText() }}
+    } @else {
+    {{ labelDeactiveText() }}
+    }
+  </label>
+</div>
