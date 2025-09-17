@@ -1,0 +1,10 @@
+<div
+  class="grid-item"
+  [ngClass]="[
+    `col-mobile-${colMobile()}`,
+    `col-tablet-${colTablet()}`,
+    `col-desktop-${colDesktop()}`,
+  ]"
+>
+  <ng-content />
+</div>

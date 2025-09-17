@@ -1,0 +1,28 @@
+.grid-item {
+  border: 1px solid black;
+}
+
+// Define mobile columns (4)
+@for $i from 1 through 4 {
+  .col-mobile-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+// Tablet (6)
+@media (min-width: 768px) {
+  @for $i from 1 through 6 {
+    .col-tablet-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}
+
+// Desktop (12)
+@media (min-width: 1024px) {
+  @for $i from 1 through 12 {
+    .col-desktop-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}

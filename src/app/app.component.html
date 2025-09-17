@@ -1,11 +1,22 @@
-<app-toggle
-  id="test-toggle"
-  labelActiveText="on"
-  labelDeactiveText="off"
-  [isLabelHidden]="true"
-  [defaultToggled]="true"
-  [isDisabled]="true"
-  size="sm"
-  (onActiveToggle)="onActiveToggle()"
-  (onDeactiveToggle)="onDeactiveToggle()"
-/>
+<app-page-layout>
+  <app-grid>
+    <app-grid-item [colMobile]="4" [colTablet]="6" [colDesktop]="12">
+      <div class="box">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dolorum
+        nisi eaque unde harum hic cum at, earum necessitatibus autem quidem
+        libero, porro nemo dolor quibusdam nesciunt, dolore veritatis maiores.
+      </div>
+    </app-grid-item>
+  </app-grid>
+  <app-toggle
+    id="test-toggle"
+    labelActiveText="on"
+    labelDeactiveText="off"
+    [isLabelHidden]="true"
+    [defaultToggled]="true"
+    [isDisabled]="true"
+    size="sm"
+    (onActiveToggle)="onActiveToggle()"
+    (onDeactiveToggle)="onDeactiveToggle()"
+  />
+</app-page-layout>
