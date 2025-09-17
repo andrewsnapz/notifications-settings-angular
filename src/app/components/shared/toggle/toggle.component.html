@@ -5,13 +5,13 @@
     type="button"
     [class]="this.toggleClasses().toggleControl"
     [attr.aria-checked]="isToggled()"
-    [attr.aria-readonly]="isDisabled()"
+    [attr.aria-labelledby]="`toggle-${id()}-label`"
     [disabled]="isDisabled()"
     (click)="onToggleChange()"
   >
     <span [class]="this.toggleClasses().toggleBall"></span>
   </button>
-  <label [class]="this.toggleClasses().label" [for]="id()">
+  <label [id]="`toggle-${id()}-label`" [class]="this.toggleClasses().label">
     @if(this.isToggled()) {
     {{ labelActiveText() }}
     } @else {

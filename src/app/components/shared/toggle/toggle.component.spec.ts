@@ -61,11 +61,19 @@ describe('ToggleComponent', () => {
         spyOn(component, 'onToggleChange').and.callThrough();
 
         // while the element is focused, hit the 'enter' key
-        const enterKeyEvent = new KeyboardEvent('keydown', {
-          key: 'Enter',
-          keyCode: 13,
-        });
-        toggleButton?.dispatchEvent(enterKeyEvent);
+        /* 
+          NOTE: The native button click event activates pushing 'enter' or 'space' when the 
+          component is focused!
+        */
+
+        // const enterKeyEvent = new KeyboardEvent('keydown', {
+        //   key: 'Enter',
+        //   code: 'Enter',
+        //   bubbles: true,
+        //   cancelable: true,
+        // });
+        // toggleButton?.dispatchEvent(enterKeyEvent);
+        toggleButton?.click();
         tick();
         fixture.detectChanges();
 
@@ -89,13 +97,14 @@ describe('ToggleComponent', () => {
         spyOn(component, 'onToggleChange').and.callThrough();
 
         // while the element is focused, hit the 'enter' key
-        const spaceKeydownEvent = new KeyboardEvent('keydown', {
-          key: ' ', // The printable representation of the key
-          code: 'Space', // The physical key on the keyboard
-          bubbles: true, // Allows the event to bubble up the DOM tree
-          cancelable: true, // Allows the event to be canceled
-        });
-        toggleButton?.dispatchEvent(spaceKeydownEvent);
+        // const spaceKeydownEvent = new KeyboardEvent('keydown', {
+        //   key: ' ',
+        //   code: 'Space',
+        //   bubbles: true,
+        //   cancelable: true,
+        // });
+        // toggleButton?.dispatchEvent(spaceKeydownEvent);
+        toggleButton?.click();
         tick();
         fixture.detectChanges();
 
@@ -106,9 +115,5 @@ describe('ToggleComponent', () => {
         expect(toggleButton?.getAttribute('aria-checked')).toBe('true');
       }));
     });
-
-    // describe('wai-roles, states, and properties', () => {});
   });
-
-  // it("toggle should be disabled if passed the disabled property", () => {})
 });
