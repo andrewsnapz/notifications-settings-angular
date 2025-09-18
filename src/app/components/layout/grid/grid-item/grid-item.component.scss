@@ -1,0 +1,27 @@
+// Mobile (default)
+@for $i from 1 through 4 {
+  :host,
+  .col-mobile-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+// Tablet
+@media (min-width: 768px) {
+  @for $i from 1 through 6 {
+    :host,
+    .col-tablet-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}
+
+// Desktop
+@media (min-width: 1280px) {
+  @for $i from 1 through 12 {
+    :host,
+    .col-desktop-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}

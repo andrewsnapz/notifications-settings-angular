@@ -1,11 +1,33 @@
-<app-toggle
-  id="test-toggle"
-  labelActiveText="on"
-  labelDeactiveText="off"
-  [isLabelHidden]="true"
-  [defaultToggled]="true"
-  [isDisabled]="true"
-  size="sm"
-  (onActiveToggle)="onActiveToggle()"
-  (onDeactiveToggle)="onDeactiveToggle()"
-/>
+<!-- 4, 6, 12-->
+
+<app-page-layout>
+  <app-grid>
+    <app-grid-item [colMobile]="4" [colTablet]="6" [colDesktop]="12">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae similique
+      harum recusandae rerum eum error, eius quam optio est, natus alias
+      molestias saepe, nisi aliquid? Recusandae quos voluptate ipsum sint! Lorem
+      ipsum dolor sit amet consectetur adipisicing elit. Vitae similique harum
+      recusandae rerum eum error, eius quam optio est, natus alias molestias
+      saepe, nisi aliquid? Recusandae quos voluptate ipsum sint!
+    </app-grid-item>
+    <app-grid-item [colMobile]="4" [colTablet]="6" [colDesktop]="12">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae similique
+      harum recusandae rerum eum error, eius quam optio est, natus alias
+      molestias saepe, nisi aliquid? Recusandae quos voluptate ipsum sint! Lorem
+      ipsum dolor sit amet consectetur adipisicing elit. Vitae similique harum
+      recusandae rerum eum error, eius quam optio est, natus alias molestias
+      saepe, nisi aliquid? Recusandae quos voluptate ipsum sint!
+    </app-grid-item>
+  </app-grid>
+  <app-toggle
+    id="test-toggle"
+    labelActiveText="on"
+    labelDeactiveText="off"
+    [isLabelHidden]="true"
+    [defaultToggled]="true"
+    [isDisabled]="true"
+    size="sm"
+    (onActiveToggle)="onActiveToggle()"
+    (onDeactiveToggle)="onDeactiveToggle()"
+  />
+</app-page-layout>
