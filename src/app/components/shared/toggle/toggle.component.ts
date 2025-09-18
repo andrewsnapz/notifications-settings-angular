@@ -21,9 +21,6 @@ export class ToggleComponent {
   isToggled = signal(this.defaultToggled());
 
   toggleClasses = computed(() => ({
-    toggleContainer: {
-      ['toggle-container']: true,
-    },
     toggleControl: {
       toggle: true,
       ['toggle-deactive']: !this.isToggled(),
