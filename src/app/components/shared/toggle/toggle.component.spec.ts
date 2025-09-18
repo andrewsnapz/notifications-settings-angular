@@ -4,7 +4,6 @@ import {
   tick,
   fakeAsync,
 } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ToggleComponent } from './toggle.component';
