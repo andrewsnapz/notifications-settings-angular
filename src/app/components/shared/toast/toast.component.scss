@@ -1,3 +1,8 @@
+@use "../../../../styles/mixins/text" as text;
+@use "../../../../styles/variables/colors" as colors;
+@use "../../../../styles/variables/typography" as typography;
+@use "../../../../styles/variables/misc" as misc;
+
 .toast {
   max-height: 32px;
   display: flex;
@@ -8,44 +13,42 @@
   padding-inline: 4px 10px;
   border-radius: 2000px;
 
-  font-weight: var(--font-weight-md);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-md);
-  letter-spacing: var(--letter-spacing-md);
+  font-weight: typography.$font-weight-semibold;
+  @include text.text-base-14;
 
   &-success {
-    background-color: var(--background-success-subtle);
+    background-color: colors.$status-success-subtle;
   }
 
   &-failure {
-    background-color: var(--background-error-subtle);
+    background-color: colors.$status-error-subtle;
   }
 }
 
 .toast-header {
   display: block;
   text-align: center;
-  box-shadow: var(--drop-shadow);
-  background-color: var(--background-primary);
+  box-shadow: misc.$drop-shadow;
+  background-color: colors.$background-primary;
   border-radius: 9999px;
   padding-inline: 10px;
   padding-block: 2px;
 
   &-success {
-    color: var(--text-success);
+    color: colors.$icon-success;
   }
 
   &-failure {
-    color: var(--text-error-emphasize);
+    color: colors.$status-error-emphasize;
   }
 }
 
 .toast-body {
   &-success {
-    color: var(--text-success);
+    color: colors.$icon-success;
   }
 
   &-failure {
-    color: var(--text-error);
+    color: colors.$status-error;
   }
 }

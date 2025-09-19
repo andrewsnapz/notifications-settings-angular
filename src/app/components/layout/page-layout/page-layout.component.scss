@@ -1,8 +1,9 @@
-// mobile design first
+@use "../../../../styles/variables/colors" as colors;
+
 .page-layout {
   display: flex;
   flex-direction: column;
   min-width: 100%;
   min-height: 100%;
-  background-color: var(--background-primary);
+  background-color: colors.$background-primary;
 }
