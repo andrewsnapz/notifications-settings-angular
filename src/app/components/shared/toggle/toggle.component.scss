@@ -1,3 +1,6 @@
+@use "../../../../styles/variables/colors" as colors;
+@use "../../../../styles/variables/misc" as misc;
+
 .toggle-container {
   display: inline-flex;
 }
@@ -9,12 +12,12 @@
   cursor: pointer;
 
   &:disabled {
-    background-color: var(--background-disabled-emphasize);
+    background-color: colors.$background-disabled-emphasize;
     cursor: auto;
   }
 
   &:not(:disabled):hover {
-    background-color: var(--background-secondary-hover);
+    background-color: colors.$background-secondary-hover;
   }
 
   &-sm {
@@ -28,19 +31,18 @@
   }
 
   &-deactive {
-    background-color: var(--background-secondary);
+    background-color: colors.$background-secondary;
   }
 
   &-active {
-    background-color: var(--brand-primary-emphasize);
+    background-color: colors.$brand-primary-emphasize;
   }
 }
 
 .toggle-ball {
   position: absolute;
-  background-color: var(--background-primary);
-  border-radius: 50%;
-  box-shadow: var(--drop-shadow);
+  background-color: colors.$background-primary;
+  box-shadow: misc.$drop-shadow;
   transform: translate(-50%, -50%); // puts ball in the middle
   transition: all ease-in 0.1s;
 
@@ -55,7 +57,7 @@
   }
 
   &-disabled {
-    background-color: var(--background-secondary-hover);
+    background-color: colors.$background-secondary-hover;
   }
 
   &-deactive {

@@ -1,0 +1,25 @@
+@use "../variables/typography" as *;
+
+@mixin text-base-14 {
+  font-size: $font-size-sm;
+  line-height: $font-line-height-sm;
+  letter-spacing: 0%;
+}
+
+@mixin text-base-16 {
+  font-size: $font-size-md;
+  line-height: $font-line-height-md;
+  letter-spacing: 0%;
+}
+
+@mixin text-base-18 {
+  font-size: $font-size-lg;
+  line-height: $font-line-height-lg;
+  letter-spacing: 0%;
+}
+
+@mixin text-base-20 {
+  font-size: $font-size-xl;
+  line-height: $font-line-height-xl;
+  letter-spacing: 0%;
+}
