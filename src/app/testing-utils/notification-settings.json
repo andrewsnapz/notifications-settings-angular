@@ -1,0 +1,96 @@
+{
+    "notification-settings": {
+        "types": [
+            "Push",
+            "Email",
+            "SMS"
+        ],
+        "settings": {
+            "marketing-and-promotional-content": [
+                {
+                    "id": "marketing-and-promotional-content-push",
+                    "type": "Push",
+                    "isActive": true
+                },
+                {
+                    "id": "marketing-and-promotional-content-email",
+                    "type": "Email",
+                    "isActive": true
+                },
+                {
+                    "id": "marketing-and-promotional-content-sms",
+                    "type": "SMS",
+                    "isActive": true
+                }
+            ],
+            "feature-updates": [
+                {
+                    "id": "feature-updates-push",
+                    "type": "Push",
+                    "isActive": true
+                },
+                {
+                    "id": "feature-updates-email",
+                    "type": "Email",
+                    "isActive": true
+                },
+                {
+                    "id": "feature-updates-sms",
+                    "type": "SMS",
+                    "isActive": true
+                }
+            ],
+            "comments": [
+                {
+                    "id": "comments-push",
+                    "type": "Push",
+                    "isActive": true
+                },
+                {
+                    "id": "comments-email",
+                    "type": "Email",
+                    "isActive": true
+                },
+                {
+                    "id": "comments-sms",
+                    "type": "SMS",
+                    "isActive": true
+                }
+            ],
+            "updates-from-friends": [
+                {
+                    "id": "updates-from-friends-push",
+                    "type": "Push",
+                    "isActive": true
+                },
+                {
+                    "id": "updates-from-friends-email",
+                    "type": "Email",
+                    "isActive": true
+                },
+                {
+                    "id": "updates-from-friends-sms",
+                    "type": "SMS",
+                    "isActive": true
+                }
+            ],
+            "friends-requests": [
+                {
+                    "id": "friends-requests-push",
+                    "type": "Push",
+                    "isActive": true
+                },
+                {
+                    "id": "friends-requests-email",
+                    "type": "Email",
+                    "isActive": true
+                },
+                {
+                    "id": "friends-requests-sms",
+                    "type": "SMS",
+                    "isActive": true
+                }
+            ]
+        }
+    }
+}
