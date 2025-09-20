@@ -1,10 +1,12 @@
 @use "../../../../styles/mixins/text" as text;
+@use "../../../../styles/variables/colors" as colors;
 
 // for some reason the scss '&' doesn't work
 
 :host.button {
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 // size:
@@ -35,9 +37,30 @@
 
 // type
 :host.button-primary {
-  background-color: blue;
+  background-color: colors.$brand-primary;
+  color: colors.$text-primary-inverted;
+
+  &:hover {
+    background-color: colors.$brand-primary-emphasize;
+  }
+
+  &:disabled {
+    background-color: colors.$background-disabled;
+    color: colors.$interactive-text-disabled;
+    cursor: auto;
+  }
 }
 
 :host.button-secondary {
   background-color: red;
+
+  &:hover {
+    background-color: colors.$brand-primary-emphasize;
+  }
+
+  &:disabled {
+    background-color: colors.$background-disabled;
+    color: colors.$interactive-text-disabled;
+    cursor: auto;
+  }
 }
