@@ -30,7 +30,8 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/app/assets"
+              "src/app/assets",
+              "src/mockServiceWorker.js"
             ],
             "styles": [
               "src/styles.scss"
