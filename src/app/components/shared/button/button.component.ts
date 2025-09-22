@@ -7,11 +7,11 @@ import { Component, input, HostBinding } from '@angular/core';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  type = input<'primary' | 'secondary'>('primary');
+  buttonType = input<'primary' | 'secondary'>('primary');
   size = input<'sm' | 'md' | 'lg' | 'xl' | '2xl'>('md');
 
   @HostBinding('class')
   get buttonClasses(): string {
-    return `button button-${this.size()} button-${this.type()}`;
+    return `button button-${this.size()} button-${this.buttonType()}`;
   }
 }

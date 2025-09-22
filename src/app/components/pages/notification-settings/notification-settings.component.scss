@@ -1,0 +1,7 @@
+@use "../../../../styles/variables/typography" as typography;
+@use "../../../../styles/mixins/text" as text;
+
+.notification-settings {
+  @include text.text-base-20;
+  font-weight: typography.$font-weight-semibold;
+}

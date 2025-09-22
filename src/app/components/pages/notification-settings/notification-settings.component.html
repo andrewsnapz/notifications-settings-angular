@@ -1,1 +1,33 @@
-<app-backend-error />
+@if (loadingStatus() === "error") {
+  <app-backend-error />
+}
+
+<div>
+  <h1>Manage Your Notifications</h1>
+  <p>
+    Choose how you want to be notified about the latest updates and messages.
+  </p>
+  <form>
+    <table aria-label="notification-settings-table">
+      <thead>
+        <tr>
+          <th>Field 1</th>
+          <th>Field 2</th>
+          <th>Field 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Field 1 data</td>
+          <td>Field 2 data</td>
+          <td>Field 3 data</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <button type="submit" buttonType="primary" appButton [disabled]="true">
+          Save changes
+        </button>
+      </tfoot>
+    </table>
+  </form>
+</div>
