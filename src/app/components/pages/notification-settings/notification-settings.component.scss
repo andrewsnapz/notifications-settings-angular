@@ -1,7 +1,69 @@
+@use "../../../../styles/variables/colors" as colors;
 @use "../../../../styles/variables/typography" as typography;
 @use "../../../../styles/mixins/text" as text;
 
 .notification-settings {
-  @include text.text-base-20;
-  font-weight: typography.$font-weight-semibold;
+  padding-block-start: 64px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &-header {
+    &-heading {
+      @include text.text-base-20;
+      font-weight: typography.$font-weight-semibold;
+      margin-block-end: 8px;
+      padding: 0;
+    }
+
+    &-description {
+      @include text.text-base-14;
+      color: colors.$interactive-text-hint;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &-form {
+    @include text.text-base-14;
+
+    &-table {
+      width: 100%;
+
+      border-collapse: collapse;
+
+      &-header {
+        width: 100%;
+        text-align: center;
+
+        th {
+          font-weight: typography.$font-weight-semibold;
+          border-bottom: 1px solid colors.$border-primary;
+          padding-block: 8px;
+        }
+      }
+
+      &-body {
+        tr,
+        td {
+          padding-block-start: 16px;
+          text-align: left;
+        }
+
+        tr,
+        td:not(:first-child) {
+          text-align: center;
+        }
+      }
+
+      &-footer {
+        tr,
+        td {
+          text-align: end;
+          padding-block: 16px;
+        }
+      }
+    }
+  }
 }
