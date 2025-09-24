@@ -1,4 +1,4 @@
-<div class="toggle-container">
+<div class="toggle-container" [formControlName]="parentForm()">
   <button
     [id]="id()"
     role="switch"
@@ -8,14 +8,15 @@
     [attr.aria-labelledby]="`toggle-${id()}-label`"
     [disabled]="isDisabled()"
     (click)="onToggleChange()"
+    [formControlName]="controlName()"
   >
     <span [class]="this.toggleClasses().toggleBall"></span>
   </button>
   <label [id]="`toggle-${id()}-label`" [class]="this.toggleClasses().label">
-    @if(this.isToggled()) {
-    {{ labelActiveText() }}
+    @if (this.isToggled()) {
+      {{ labelActiveText() }}
     } @else {
-    {{ labelDeactiveText() }}
+      {{ labelDeactiveText() }}
     }
   </label>
 </div>

@@ -54,12 +54,13 @@
                 [isLabelHidden]="true"
                 [defaultToggled]="data.isActive"
                 [isDisabled]="false"
-                [formControlName]="data.type.toLowerCase()"
+                parentForm="marketingAndPromotionalContent"
+                [controlName]="data.type.toLowerCase()"
               />
             </td>
           }
         </tr>
-        <tr>
+        <tr formGroupName="featureUpdates">
           <td headers="notification-name">Feature updates</td>
           @for (
             data of loadedNotificationSettings()["feature-updates"];
@@ -74,11 +75,13 @@
                 [isLabelHidden]="true"
                 [defaultToggled]="data.isActive"
                 [isDisabled]="false"
+                parentForm="featureUpdates"
+                [controlName]="data.type.toLowerCase()"
               />
             </td>
           }
         </tr>
-        <tr>
+        <tr formGroupName="comments">
           <td headers="notification-name">Comments</td>
           @for (
             data of loadedNotificationSettings()["comments"];
@@ -93,11 +96,13 @@
                 [isLabelHidden]="true"
                 [defaultToggled]="data.isActive"
                 [isDisabled]="false"
+                parentForm="comments"
+                [controlName]="data.type.toLowerCase()"
               />
             </td>
           }
         </tr>
-        <tr>
+        <tr formGroupName="updatesFromFriends">
           <td headers="notification-name">Updates from friends</td>
           @for (
             data of loadedNotificationSettings()["updates-from-friends"];
@@ -112,11 +117,13 @@
                 [isLabelHidden]="true"
                 [defaultToggled]="data.isActive"
                 [isDisabled]="false"
+                parentForm="updatesFromFriends"
+                [controlName]="data.type.toLowerCase()"
               />
             </td>
           }
         </tr>
-        <tr>
+        <tr formGroupName="friendsRequests">
           <td headers="notification-name">Friends requests</td>
           @for (
             data of loadedNotificationSettings()["friends-requests"];
@@ -131,6 +138,8 @@
                 [isLabelHidden]="true"
                 [defaultToggled]="data.isActive"
                 [isDisabled]="false"
+                parentForm="friendsRequests"
+                [controlName]="data.type.toLowerCase()"
               />
             </td>
           }
