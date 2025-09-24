@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  input,
-  OnInit,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, input, OnInit, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-toggle',
@@ -26,8 +19,6 @@ export class ToggleComponent implements OnInit {
   onDeactiveToggle = output();
 
   isToggled = signal(false);
-
-  component: any;
 
   ngOnInit() {
     this.isToggled.set(this.defaultToggled());
