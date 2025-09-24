@@ -23,6 +23,7 @@ export class NotificationSettingsComponent implements OnInit {
 
   loadingStatus = signal<'loading' | 'error' | 'success'>('loading');
 
+  // on ngOnInit, will set these values based on 'api' call
   notificationSettingsForm = new FormGroup({
     marketingAndPromotionalContent: new FormGroup({
       push: new FormControl(false),
@@ -70,6 +71,15 @@ export class NotificationSettingsComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
+  }
+
+  updateSettings() {
+    this.notificationSettingsForm
+      .get('marketingAndPromotionalContent')
+      ?.get('push')
+      ?.setValue(false);
+
+    console.log(this.notificationSettingsForm);
   }
 
   onSubmit() {}

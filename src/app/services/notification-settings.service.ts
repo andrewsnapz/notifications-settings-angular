@@ -5,7 +5,6 @@ import { tap, map } from 'rxjs';
 import {
   type NotificationType,
   type NotificationSettings,
-  type NotificationResponse,
 } from '../types/notification.model';
 
 /*
@@ -44,7 +43,6 @@ export class NotificationSettingsService {
         next: (response) => {
           this.notificationTypes.set(response['types']);
           this.notificationSettings.set(response['settings']);
-          console.log(response['settings']);
         },
       }),
     );
