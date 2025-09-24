@@ -20,25 +20,28 @@
     >
       <thead class="notification-settings-form-table-header">
         <tr>
-          <th><span class="visually-hidden">notification type</span></th>
+          <th id="notification-name">
+            <span class="visually-hidden">notification type</span>
+          </th>
           @for (
             notificationType of loadedNotificationTypes();
             track notificationType
           ) {
-            <th>{{ notificationType }}</th>
+            <th [id]="notificationType">{{ notificationType }}</th>
           }
         </tr>
       </thead>
       <tbody class="notification-settings-form-table-body">
         <tr>
-          <td>Marketing & promotional content</td>
+          <td headers="notification-name">Marketing & promotional content</td>
           @for (
             data of loadedNotificationSettings()[
               "marketing-and-promotional-content"
             ];
-            track data.id
+            track data.id;
+            let idx = $index
           ) {
-            <td>
+            <td [headers]="data.type">
               <app-toggle
                 [id]="data.id"
                 size="sm"
@@ -52,12 +55,12 @@
           }
         </tr>
         <tr>
-          <td>Feature updates</td>
+          <td headers="notification-name">Feature updates</td>
           @for (
             data of loadedNotificationSettings()["feature-updates"];
             track data.id
           ) {
-            <td>
+            <td [headers]="data.type">
               <app-toggle
                 [id]="data.id"
                 size="sm"
@@ -71,12 +74,12 @@
           }
         </tr>
         <tr>
-          <td>Comments</td>
+          <td headers="notification-name">Comments</td>
           @for (
             data of loadedNotificationSettings()["comments"];
             track data.id
           ) {
-            <td>
+            <td [headers]="data.type">
               <app-toggle
                 [id]="data.id"
                 size="sm"
@@ -90,12 +93,12 @@
           }
         </tr>
         <tr>
-          <td>Updates from friends</td>
+          <td headers="notification-name">Updates from friends</td>
           @for (
             data of loadedNotificationSettings()["updates-from-friends"];
             track data.id
           ) {
-            <td>
+            <td [headers]="data.type">
               <app-toggle
                 [id]="data.id"
                 size="sm"
@@ -109,12 +112,12 @@
           }
         </tr>
         <tr>
-          <td>Friends requests</td>
+          <td headers="notification-name">Friends requests</td>
           @for (
             data of loadedNotificationSettings()["friends-requests"];
             track data.id
           ) {
-            <td>
+            <td [headers]="data.type">
               <app-toggle
                 [id]="data.id"
                 size="sm"
@@ -128,21 +131,17 @@
           }
         </tr>
       </tbody>
-      <tfoot class="notification-settings-form-table-footer">
-        <tr>
-          <td colspan="4">
-            <button
-              type="submit"
-              buttonType="primary"
-              size="xl"
-              appButton
-              [disabled]="true"
-            >
-              Save changes
-            </button>
-          </td>
-        </tr>
-      </tfoot>
     </table>
+    <div class="notification-settings-footer">
+      <button
+        type="submit"
+        buttonType="primary"
+        size="xl"
+        appButton
+        [disabled]="true"
+      >
+        Save changes
+      </button>
+    </div>
   </form>
 </div>

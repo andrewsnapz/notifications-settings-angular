@@ -1,5 +1,6 @@
 export type Notification = {
   id: string;
+  group: string;
   type: string;
   isActive: boolean;
 };

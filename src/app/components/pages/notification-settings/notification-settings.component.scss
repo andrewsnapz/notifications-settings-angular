@@ -56,14 +56,11 @@
           text-align: center;
         }
       }
-
-      &-footer {
-        tr,
-        td {
-          text-align: end;
-          padding-block: 16px;
-        }
-      }
     }
+  }
+
+  &-footer {
+    padding-block: 16px;
+    text-align: end;
   }
 }
