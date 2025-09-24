@@ -1,4 +1,11 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 
 @Component({
   selector: 'app-toggle',
@@ -6,7 +13,7 @@ import { Component, computed, input, output, signal } from '@angular/core';
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.scss',
 })
-export class ToggleComponent {
+export class ToggleComponent implements OnInit {
   id = input.required<string>();
   size = input<'sm' | 'md'>('sm');
   labelActiveText = input.required<string>();
@@ -18,7 +25,7 @@ export class ToggleComponent {
   onActiveToggle = output();
   onDeactiveToggle = output();
 
-  isToggled = signal(this.defaultToggled());
+  isToggled = signal(false);
 
   toggleClasses = computed(() => ({
     toggleControl: {
@@ -39,6 +46,10 @@ export class ToggleComponent {
     },
   }));
   component: any;
+
+  ngOnInit() {
+    this.isToggled.set(this.defaultToggled());
+  }
 
   onToggleChange() {
     if (this.isToggled()) {

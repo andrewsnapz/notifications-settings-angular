@@ -1,12 +1,147 @@
-<app-backend-error />
-<button appButton type="primary" size="sm" [disabled]="true">
-  disabled primary button
-</button>
-<button appButton type="secondary" size="sm" [disabled]="true">
-  disabled secondary button
-</button>
-<button appButton type="primary" size="sm">dummy button</button>
-<button appButton type="secondary" size="md">dummy button</button>
-<button appButton size="lg">dummy button</button>
-<button appButton type="secondary" size="xl">dummy button</button>
-<button appButton size="2xl">dummy button</button>
+@if (loadingStatus() === "loading") {
+  <p>Loading Notification Settings...</p>
+} @else if (loadingStatus() === "error") {
+  <app-backend-error />
+}
+
+<div class="notification-settings">
+  <div class="notification-settings-header">
+    <h1 class="notification-settings-header-heading">
+      Manage Your Notifications
+    </h1>
+    <p class="notification-settings-header-description">
+      Choose how you want to be notified about the latest updates and messages.
+    </p>
+  </div>
+  <form class="notification-settings-form">
+    <table
+      class="notification-settings-form-table"
+      aria-label="notification-settings"
+    >
+      <thead class="notification-settings-form-table-header">
+        <tr>
+          <th id="notification-name">
+            <span class="visually-hidden">notification type</span>
+          </th>
+          @for (
+            notificationType of loadedNotificationTypes();
+            track notificationType
+          ) {
+            <th [id]="notificationType">{{ notificationType }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody class="notification-settings-form-table-body">
+        <tr>
+          <td headers="notification-name">Marketing & promotional content</td>
+          @for (
+            data of loadedNotificationSettings()[
+              "marketing-and-promotional-content"
+            ];
+            track data.id;
+            let idx = $index
+          ) {
+            <td [headers]="data.type">
+              <app-toggle
+                [id]="data.id"
+                size="sm"
+                labelActiveText="on"
+                labelDeactiveText="off"
+                [isLabelHidden]="true"
+                [defaultToggled]="data.isActive"
+                [isDisabled]="false"
+              />
+            </td>
+          }
+        </tr>
+        <tr>
+          <td headers="notification-name">Feature updates</td>
+          @for (
+            data of loadedNotificationSettings()["feature-updates"];
+            track data.id
+          ) {
+            <td [headers]="data.type">
+              <app-toggle
+                [id]="data.id"
+                size="sm"
+                labelActiveText="on"
+                labelDeactiveText="off"
+                [isLabelHidden]="true"
+                [defaultToggled]="data.isActive"
+                [isDisabled]="false"
+              />
+            </td>
+          }
+        </tr>
+        <tr>
+          <td headers="notification-name">Comments</td>
+          @for (
+            data of loadedNotificationSettings()["comments"];
+            track data.id
+          ) {
+            <td [headers]="data.type">
+              <app-toggle
+                [id]="data.id"
+                size="sm"
+                labelActiveText="on"
+                labelDeactiveText="off"
+                [isLabelHidden]="true"
+                [defaultToggled]="data.isActive"
+                [isDisabled]="false"
+              />
+            </td>
+          }
+        </tr>
+        <tr>
+          <td headers="notification-name">Updates from friends</td>
+          @for (
+            data of loadedNotificationSettings()["updates-from-friends"];
+            track data.id
+          ) {
+            <td [headers]="data.type">
+              <app-toggle
+                [id]="data.id"
+                size="sm"
+                labelActiveText="on"
+                labelDeactiveText="off"
+                [isLabelHidden]="true"
+                [defaultToggled]="data.isActive"
+                [isDisabled]="false"
+              />
+            </td>
+          }
+        </tr>
+        <tr>
+          <td headers="notification-name">Friends requests</td>
+          @for (
+            data of loadedNotificationSettings()["friends-requests"];
+            track data.id
+          ) {
+            <td [headers]="data.type">
+              <app-toggle
+                [id]="data.id"
+                size="sm"
+                labelActiveText="on"
+                labelDeactiveText="off"
+                [isLabelHidden]="true"
+                [defaultToggled]="data.isActive"
+                [isDisabled]="false"
+              />
+            </td>
+          }
+        </tr>
+      </tbody>
+    </table>
+    <div class="notification-settings-footer">
+      <button
+        type="submit"
+        buttonType="primary"
+        size="xl"
+        appButton
+        [disabled]="true"
+      >
+        Save changes
+      </button>
+    </div>
+  </form>
+</div>

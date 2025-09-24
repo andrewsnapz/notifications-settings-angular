@@ -52,7 +52,7 @@
 }
 
 :host.button-secondary {
-  background-color: red;
+  background-color: colors.$background-primary;
 
   &:hover {
     background-color: colors.$brand-primary-emphasize;
