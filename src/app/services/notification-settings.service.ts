@@ -19,10 +19,10 @@ export class NotificationSettingsService {
   private notificationTypes = signal<NotificationType[]>([]);
   private notificationSettings = signal<NotificationSettings>({
     comments: [],
-    ['feature-updates']: [],
-    ['friends-requests']: [],
-    ['marketing-and-promotional-content']: [],
-    ['updates-from-friends']: [],
+    ['featureUpdates']: [],
+    ['friendsRequests']: [],
+    ['marketingAndPromotionalContent']: [],
+    ['updatesFromFriends']: [],
   });
 
   loadedNotificationTypes = this.notificationTypes.asReadonly();

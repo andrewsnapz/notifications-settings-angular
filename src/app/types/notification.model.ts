@@ -7,21 +7,10 @@ export type Notification = {
 
 export type NotificationSettings = {
   comments: Notification[];
-  ['feature-updates']: Notification[];
-  ['friends-requests']: Notification[];
-  ['marketing-and-promotional-content']: Notification[];
-  ['updates-from-friends']: Notification[];
+  ['featureUpdates']: Notification[];
+  ['friendsRequests']: Notification[];
+  ['marketingAndPromotionalContent']: Notification[];
+  ['updatesFromFriends']: Notification[];
 };
 
 export type NotificationType = 'Push' | 'Email' | 'SMS';
-
-export type NotificationResponse = {
-  settings: {
-    comments: Notification[];
-    ['feature-updates']: Notification[];
-    ['friends-requests']: Notification[];
-    ['marketing-and-promotional-content']: Notification[];
-    ['updating-from-friends']: Notification[];
-  };
-  types: NotificationType[];
-};

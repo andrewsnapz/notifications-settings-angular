@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,6 @@ export class ToggleComponent {
   labelActiveText = input.required<string>();
   labelDeactiveText = input.required<string>();
   isLabelHidden = input.required<boolean>();
-  // defaultToggled = input<boolean>(false);
   isToggled = input.required<boolean>();
   isDisabled = input.required<boolean>();
 
