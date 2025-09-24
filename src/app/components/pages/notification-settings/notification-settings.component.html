@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody class="notification-settings-form-table-body">
-        <tr formGroupName="marketingAndPromotionalContent">
+        <tr>
           <td headers="notification-name">Marketing & promotional content</td>
           @for (
             data of loadedNotificationSettings()[
@@ -52,15 +52,23 @@
                 labelActiveText="on"
                 labelDeactiveText="off"
                 [isLabelHidden]="true"
-                [defaultToggled]="data.isActive"
+                [isToggled]="
+                  notificationSettingsForm
+                    .get('marketingAndPromotionalContent')!
+                    .get(data.type.toLowerCase())!.value
+                "
                 [isDisabled]="false"
-                parentGroupName="marketingAndPromotionalContent"
-                (onDeactiveToggle)="updateSettings()"
+                (onToggle)="
+                  updateSettings(
+                    'marketingAndPromotionalContent',
+                    data.type.toLowerCase()
+                  )
+                "
               />
             </td>
           }
         </tr>
-        <!-- <tr formGroupName="featureUpdates">
+        <tr>
           <td headers="notification-name">Feature updates</td>
           @for (
             data of loadedNotificationSettings()["feature-updates"];
@@ -73,14 +81,20 @@
                 labelActiveText="on"
                 labelDeactiveText="off"
                 [isLabelHidden]="true"
-                [defaultToggled]="data.isActive"
+                [isToggled]="
+                  notificationSettingsForm
+                    .get('featureUpdates')!
+                    .get(data.type.toLowerCase())!.value
+                "
                 [isDisabled]="false"
-                [controlName]="data.type.toLowerCase()"
+                (onToggle)="
+                  updateSettings('featureUpdates', data.type.toLowerCase())
+                "
               />
             </td>
           }
         </tr>
-        <tr formGroupName="comments">
+        <tr>
           <td headers="notification-name">Comments</td>
           @for (
             data of loadedNotificationSettings()["comments"];
@@ -93,14 +107,18 @@
                 labelActiveText="on"
                 labelDeactiveText="off"
                 [isLabelHidden]="true"
-                [defaultToggled]="data.isActive"
+                [isToggled]="
+                  notificationSettingsForm
+                    .get('comments')!
+                    .get(data.type.toLowerCase())!.value
+                "
                 [isDisabled]="false"
-                [controlName]="data.type.toLowerCase()"
+                (onToggle)="updateSettings('comments', data.type.toLowerCase())"
               />
             </td>
           }
         </tr>
-        <tr formGroupName="updatesFromFriends">
+        <tr>
           <td headers="notification-name">Updates from friends</td>
           @for (
             data of loadedNotificationSettings()["updates-from-friends"];
@@ -113,14 +131,20 @@
                 labelActiveText="on"
                 labelDeactiveText="off"
                 [isLabelHidden]="true"
-                [defaultToggled]="data.isActive"
+                [isToggled]="
+                  notificationSettingsForm
+                    .get('updatesFromFriends')!
+                    .get(data.type.toLowerCase())!.value
+                "
                 [isDisabled]="false"
-                [controlName]="data.type.toLowerCase()"
+                (onToggle)="
+                  updateSettings('updatesFromFriends', data.type.toLowerCase())
+                "
               />
             </td>
           }
         </tr>
-        <tr formGroupName="friendsRequests">
+        <tr>
           <td headers="notification-name">Friends requests</td>
           @for (
             data of loadedNotificationSettings()["friends-requests"];
@@ -133,21 +157,27 @@
                 labelActiveText="on"
                 labelDeactiveText="off"
                 [isLabelHidden]="true"
-                [defaultToggled]="data.isActive"
+                [isToggled]="
+                  notificationSettingsForm
+                    .get('friendsRequests')!
+                    .get(data.type.toLowerCase())!.value
+                "
                 [isDisabled]="false"
-                [controlName]="data.type.toLowerCase()"
+                (onToggle)="
+                  updateSettings('friendsRequests', data.type.toLowerCase())
+                "
               />
             </td>
           }
-        </tr> -->
+        </tr>
       </tbody>
     </table>
     <div class="notification-settings-footer">
       <button
+        appButton
         type="submit"
         buttonType="primary"
         size="xl"
-        appButton
         [disabled]="true"
       >
         Save changes

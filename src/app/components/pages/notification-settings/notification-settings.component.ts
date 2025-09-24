@@ -73,13 +73,15 @@ export class NotificationSettingsComponent implements OnInit {
     });
   }
 
-  updateSettings() {
-    this.notificationSettingsForm
-      .get('marketingAndPromotionalContent')
-      ?.get('push')
-      ?.setValue(false);
+  updateSettings(formGroupName: string, controlName: string) {
+    const currentFormSettingValue = this.notificationSettingsForm
+      .get(formGroupName)
+      ?.get(controlName)?.value;
 
-    console.log(this.notificationSettingsForm);
+    this.notificationSettingsForm
+      .get(formGroupName)
+      ?.get(controlName)
+      ?.setValue(!currentFormSettingValue);
   }
 
   onSubmit() {}
