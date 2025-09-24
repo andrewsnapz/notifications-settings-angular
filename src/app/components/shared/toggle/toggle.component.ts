@@ -27,24 +27,6 @@ export class ToggleComponent implements OnInit {
 
   isToggled = signal(false);
 
-  toggleClasses = computed(() => ({
-    toggleControl: {
-      toggle: true,
-      ['toggle-deactive']: !this.isToggled(),
-      ['toggle-active']: this.isToggled(),
-      [`toggle-${this.size()}`]: true,
-    },
-    toggleBall: {
-      ['toggle-ball']: true,
-      ['toggle-ball-disabled']: this.isDisabled(),
-      ['toggle-ball-deactive']: !this.isToggled(),
-      ['toggle-ball-active']: this.isToggled(),
-      [`toggle-ball-${this.size()}`]: true,
-    },
-    label: {
-      ['visually-hidden']: this.isLabelHidden(),
-    },
-  }));
   component: any;
 
   ngOnInit() {

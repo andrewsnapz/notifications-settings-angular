@@ -3,19 +3,39 @@
     [id]="id()"
     role="switch"
     type="button"
-    [class]="this.toggleClasses().toggleControl"
+    [class]="{
+      toggle: true,
+      'toggle-deactive': !this.isToggled(),
+      'toggle-active': this.isToggled(),
+      'toggle-sm': this.size() === 'sm',
+      'toggle-md': this.size() === 'md',
+    }"
     [attr.aria-checked]="isToggled()"
     [attr.aria-labelledby]="`toggle-${id()}-label`"
     [disabled]="isDisabled()"
     (click)="onToggleChange()"
   >
-    <span [class]="this.toggleClasses().toggleBall"></span>
+    <span
+      [class]="{
+        'toggle-ball': true,
+        'toggle-ball-disabled': this.isDisabled(),
+        'toggle-ball-deactive': !this.isToggled(),
+        'toggle-ball-active': this.isToggled(),
+        'toggle-ball-sm': this.size() === 'sm',
+        'toggle-ball-md': this.size() === 'md',
+      }"
+    ></span>
   </button>
-  <label [id]="`toggle-${id()}-label`" [class]="this.toggleClasses().label">
-    @if(this.isToggled()) {
-    {{ labelActiveText() }}
+  <label
+    [id]="`toggle-${id()}-label`"
+    [class]="{
+      'visually-hidden': this.isLabelHidden(),
+    }"
+  >
+    @if (this.isToggled()) {
+      {{ labelActiveText() }}
     } @else {
-    {{ labelDeactiveText() }}
+      {{ labelDeactiveText() }}
     }
   </label>
 </div>
