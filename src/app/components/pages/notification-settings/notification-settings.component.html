@@ -13,7 +13,11 @@
       Choose how you want to be notified about the latest updates and messages.
     </p>
   </div>
-  <form class="notification-settings-form">
+  <form
+    class="notification-settings-form"
+    [formGroup]="notificationSettingsForm"
+    (ngSubmit)="onSubmit()"
+  >
     <table
       class="notification-settings-form-table"
       aria-label="notification-settings"
@@ -32,7 +36,7 @@
         </tr>
       </thead>
       <tbody class="notification-settings-form-table-body">
-        <tr>
+        <tr formGroupName="marketingAndPromotionalContent">
           <td headers="notification-name">Marketing & promotional content</td>
           @for (
             data of loadedNotificationSettings()[
@@ -50,6 +54,7 @@
                 [isLabelHidden]="true"
                 [defaultToggled]="data.isActive"
                 [isDisabled]="false"
+                [formControlName]="data.type.toLowerCase()"
               />
             </td>
           }

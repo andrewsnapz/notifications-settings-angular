@@ -1,4 +1,5 @@
 import { Component, signal, inject, OnInit, DestroyRef } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { BackendErrorComponent } from '../../shared/error/backend-error/backend-error.component';
 import { ButtonComponent } from '../../shared/button/button.component';
@@ -7,7 +8,12 @@ import { ToggleComponent } from '../../shared/toggle/toggle.component';
 
 @Component({
   selector: 'app-notification-settings',
-  imports: [BackendErrorComponent, ButtonComponent, ToggleComponent],
+  imports: [
+    BackendErrorComponent,
+    ButtonComponent,
+    ToggleComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './notification-settings.component.html',
   styleUrl: './notification-settings.component.scss',
 })
@@ -16,6 +22,34 @@ export class NotificationSettingsComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   loadingStatus = signal<'loading' | 'error' | 'success'>('loading');
+
+  notificationSettingsForm = new FormGroup({
+    marketingAndPromotionalContent: new FormGroup({
+      push: new FormControl(false),
+      email: new FormControl(false),
+      sms: new FormControl(false),
+    }),
+    featureUpdates: new FormGroup({
+      push: new FormControl(false),
+      email: new FormControl(false),
+      sms: new FormControl(false),
+    }),
+    comments: new FormGroup({
+      push: new FormControl(false),
+      email: new FormControl(false),
+      sms: new FormControl(false),
+    }),
+    updatesFromFriends: new FormGroup({
+      push: new FormControl(false),
+      email: new FormControl(false),
+      sms: new FormControl(false),
+    }),
+    friendsRequests: new FormGroup({
+      push: new FormControl(false),
+      email: new FormControl(false),
+      sms: new FormControl(false),
+    }),
+  });
 
   loadedNotificationTypes =
     this.notificationSettingsService.loadedNotificationTypes;
@@ -37,4 +71,6 @@ export class NotificationSettingsComponent implements OnInit {
       subscription.unsubscribe();
     });
   }
+
+  onSubmit() {}
 }

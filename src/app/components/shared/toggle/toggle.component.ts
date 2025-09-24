@@ -5,15 +5,49 @@ import {
   OnInit,
   output,
   signal,
+  inject,
 } from '@angular/core';
+import {
+  FormControlDirective,
+  FormControlName,
+  NG_VALUE_ACCESSOR,
+  NgControl,
+  NgModel,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { NoopValueAccessorDirective } from '../../../directives/NoopValueAccessorDirective.directive';
+
+function injectNgControl() {
+  const ngControl = inject(NgControl, { self: true, optional: true });
+  if (!ngControl) throw Error('...');
+  if (
+    ngControl instanceof FormControlDirective ||
+    ngControl instanceof FormControlName ||
+    ngControl instanceof NgModel
+  ) {
+    return ngControl;
+  }
+  throw Error('...');
+}
 
 @Component({
   selector: 'app-toggle',
-  imports: [],
+  standalone: true,
+  hostDirectives: [NoopValueAccessorDirective],
+  imports: [ReactiveFormsModule],
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: ToggleComponent,
+    },
+  ],
 })
 export class ToggleComponent implements OnInit {
+  ngControl = injectNgControl();
+
   id = input.required<string>();
   size = input<'sm' | 'md'>('sm');
   labelActiveText = input.required<string>();
