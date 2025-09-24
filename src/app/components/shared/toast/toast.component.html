@@ -1,27 +1,27 @@
 <div
-  [ngClass]="{
+  [class]="{
     toast: true,
     'toast-success': type() === 'success',
-    'toast-failure': type() === 'failure'
+    'toast-failure': type() === 'failure',
   }"
   role="status"
 >
   <!-- header -->
   <div
-    [ngClass]="{
+    [class]="{
       'toast-header': true,
       'toast-header-success': type() === 'success',
-      'toast-header-failure': type() === 'failure'
+      'toast-header-failure': type() === 'failure',
     }"
   >
     {{ title() }}
   </div>
   <!-- body -->
   <div
-    [ngClass]="{
+    [class]="{
       'toast-body': true,
       'toast-body-success': type() === 'success',
-      'toast-body-failure': type() === 'failure'
+      'toast-body-failure': type() === 'failure',
     }"
   >
     {{ message() }}
