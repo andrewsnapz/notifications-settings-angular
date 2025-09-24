@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  input,
-  OnInit,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, input, OnInit, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-toggle',
@@ -26,26 +19,6 @@ export class ToggleComponent implements OnInit {
   onDeactiveToggle = output();
 
   isToggled = signal(false);
-
-  toggleClasses = computed(() => ({
-    toggleControl: {
-      toggle: true,
-      ['toggle-deactive']: !this.isToggled(),
-      ['toggle-active']: this.isToggled(),
-      [`toggle-${this.size()}`]: true,
-    },
-    toggleBall: {
-      ['toggle-ball']: true,
-      ['toggle-ball-disabled']: this.isDisabled(),
-      ['toggle-ball-deactive']: !this.isToggled(),
-      ['toggle-ball-active']: this.isToggled(),
-      [`toggle-ball-${this.size()}`]: true,
-    },
-    label: {
-      ['visually-hidden']: this.isLabelHidden(),
-    },
-  }));
-  component: any;
 
   ngOnInit() {
     this.isToggled.set(this.defaultToggled());
