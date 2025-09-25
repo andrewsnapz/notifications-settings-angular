@@ -182,11 +182,25 @@
           type="submit"
           buttonType="primary"
           size="xl"
-          [disabled]="true"
+          [disabled]="!this.notificationSettingsForm.dirty"
         >
           Save changes
         </button>
       </div>
     </form>
+
+    @if (formStatus() === "success") {
+      <app-toast
+        type="success"
+        title="Success"
+        message="Changes saved successfully!"
+      />
+    } @else if (formStatus() === "error") {
+      <app-toast
+        type="failure"
+        title="Error"
+        message="Unexpected error. Please try again later or contact support."
+      />
+    }
   </div>
 }

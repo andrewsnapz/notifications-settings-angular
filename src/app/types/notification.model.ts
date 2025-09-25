@@ -14,3 +14,8 @@ export type NotificationSettings = {
 };
 
 export type NotificationType = 'Push' | 'Email' | 'SMS';
+
+export type NotificationResponse = {
+  types: NotificationType[];
+  settings: NotificationSettings;
+};

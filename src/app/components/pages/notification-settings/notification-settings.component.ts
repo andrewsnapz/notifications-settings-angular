@@ -1,11 +1,12 @@
 import { Component, signal, inject, OnInit, DestroyRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { type Notification } from '../../../types/notification.model';
+import { ToastComponent } from '../../shared/toast/toast.component';
 import { BackendErrorComponent } from '../../shared/error/backend-error/backend-error.component';
 import { ButtonComponent } from '../../shared/button/button.component';
 import { NotificationSettingsService } from '../../../services/notification-settings.service';
 import { ToggleComponent } from '../../shared/toggle/toggle.component';
-import { type Notification } from '../../../types/notification.model';
 
 @Component({
   selector: 'app-notification-settings',
@@ -13,6 +14,7 @@ import { type Notification } from '../../../types/notification.model';
     BackendErrorComponent,
     ButtonComponent,
     ToggleComponent,
+    ToastComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './notification-settings.component.html',
@@ -23,6 +25,7 @@ export class NotificationSettingsComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   loadingStatus = signal<'loading' | 'error' | 'success'>('loading');
+  formStatus = signal<'none' | 'error' | 'success'>('none');
 
   // on ngOnInit, will set these values based on 'api' call
   notificationSettingsForm = new FormGroup({
@@ -60,8 +63,6 @@ export class NotificationSettingsComponent implements OnInit {
     this.notificationSettingsService.loadedNotificationSettings;
 
   ngOnInit() {
-    this.loadingStatus.set('loading');
-
     const subscription = this.notificationSettingsService
       .loadNotificationSettings()
       .subscribe({
@@ -108,7 +109,27 @@ export class NotificationSettingsComponent implements OnInit {
       .get(formGroupName)
       ?.get(controlName)
       ?.setValue(!currentFormSettingValue);
+
+    this.notificationSettingsForm.markAsDirty();
+    this.formStatus.set('none');
   }
 
-  onSubmit() {}
+  onSubmit() {
+    // need to send id and
+    const subscription = this.notificationSettingsService
+      .putUpdatedNotificationSettings(this.notificationSettingsForm.value)
+      .subscribe({
+        complete: () => {
+          this.formStatus.set('success');
+          this.notificationSettingsForm.markAsPristine();
+        },
+        error: () => {
+          this.formStatus.set('error');
+        },
+      });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
+  }
 }

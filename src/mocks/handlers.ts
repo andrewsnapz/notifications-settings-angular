@@ -1,10 +1,10 @@
 import { http, HttpResponse } from 'msw';
 
-import notificationSettings from './json/notification-settings.json';
+import { notificationSettings, modifyNotificationSettings } from './mock-db';
 
 type ConfigurationOptions = {
   error: boolean;
-  response: any; // JSON
+  response?: any; // JSON
 };
 
 /* 
@@ -27,9 +27,24 @@ function getNotificationSettings(config: ConfigurationOptions) {
   });
 }
 
+function updateNotificationSettings(config: ConfigurationOptions) {
+  if (config.error) {
+    return http.put('/api/notification-settings', () => {
+      return HttpResponse.error();
+    });
+  }
+  return http.put('/api/notification-settings', async ({ request }) => {
+    const updatedForm: any = await request.json();
+
+    modifyNotificationSettings(updatedForm);
+    return HttpResponse.json({ updatedForm }, { status: 200 });
+  });
+}
+
 export const handlers = [
   getNotificationSettings({
     error: false,
     response: notificationSettings,
   }),
+  updateNotificationSettings({ error: false }),
 ];
