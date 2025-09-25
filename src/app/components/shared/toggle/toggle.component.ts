@@ -1,36 +1,26 @@
-import { Component, input, OnInit, output, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-toggle',
-  imports: [],
+  standalone: true,
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.scss',
+  imports: [ReactiveFormsModule],
 })
-export class ToggleComponent implements OnInit {
+export class ToggleComponent {
   id = input.required<string>();
   size = input<'sm' | 'md'>('sm');
   labelActiveText = input.required<string>();
   labelDeactiveText = input.required<string>();
   isLabelHidden = input.required<boolean>();
-  defaultToggled = input<boolean>(false);
+  isToggled = input.required<boolean>();
   isDisabled = input.required<boolean>();
 
-  onActiveToggle = output();
-  onDeactiveToggle = output();
-
-  isToggled = signal(false);
-
-  ngOnInit() {
-    this.isToggled.set(this.defaultToggled());
-  }
+  onToggle = output();
 
   onToggleChange() {
-    if (this.isToggled()) {
-      this.onDeactiveToggle.emit();
-    } else {
-      this.onActiveToggle.emit();
-    }
-    this.isToggled.update((prev) => !prev);
+    this.onToggle.emit();
   }
 }
 
