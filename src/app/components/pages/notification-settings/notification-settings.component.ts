@@ -65,106 +65,31 @@ export class NotificationSettingsComponent implements OnInit {
     const subscription = this.notificationSettingsService
       .loadNotificationSettings()
       .subscribe({
-        // next: (val) => {
-        //   const settings = { ...val.settings };
-        //   const settingKeys = Object.keys(settings);
+        next: (val) => {
+          const settings = { ...val.settings };
+          const controlNames = Object.keys(settings);
 
-        //   settingKeys.forEach((key) => {
-        //     settings[key] = settings[key].map(
-        //       (val: Notification) => val.isActive,
-        //     );
-        //   });
+          controlNames.forEach((controlName) => {
+            settings[controlName] = settings[controlName].reduce(
+              (
+                a: {
+                  [type: string]: {};
+                },
+                c: Notification,
+              ) => {
+                const notificationType = c.type.toLowerCase();
+                const isActive = c.isActive;
+                a[notificationType] = isActive;
+                return a;
+              },
+              {},
+            );
+          });
 
-        //   this.notificationSettingsForm = new FormGroup({
-        //     marketingAndPromotionalContent: new FormGroup({
-        //       push: new FormControl(
-        //         settings['marketingAndPromotionalContent'].find(
-        //           (val: Notification) => val.type === 'Push',
-        //         ).isActive,
-        //       ),
-        //       email: new FormControl(
-        //         settings['marketingAndPromotionalContent'].find(
-        //           (val: Notification) => val.type === 'Email',
-        //         ).isActive,
-        //       ),
-        //       sms: new FormControl(
-        //         settings['marketingAndPromotionalContent'].find(
-        //           (val: Notification) => val.type === 'SMS',
-        //         ).isActive,
-        //       ),
-        //     }),
-        //     featureUpdates: new FormGroup({
-        //       push: new FormControl(
-        //         settings['featureUpdates'].find(
-        //           (val: Notification) => val.type === 'Push',
-        //         ).isActive,
-        //       ),
-        //       email: new FormControl(
-        //         settings['featureUpdates'].find(
-        //           (val: Notification) => val.type === 'Email',
-        //         ).isActive,
-        //       ),
-        //       sms: new FormControl(
-        //         settings['featureUpdates'].find(
-        //           (val: Notification) => val.type === 'SMS',
-        //         ).isActive,
-        //       ),
-        //     }),
-        //     comments: new FormGroup({
-        //       push: new FormControl(
-        //         settings['comments'].find(
-        //           (val: Notification) => val.type === 'Push',
-        //         ).isActive,
-        //       ),
-        //       email: new FormControl(
-        //         settings['comments'].find(
-        //           (val: Notification) => val.type === 'Email',
-        //         ).isActive,
-        //       ),
-        //       sms: new FormControl(
-        //         settings['comments'].find(
-        //           (val: Notification) => val.type === 'SMS',
-        //         ).isActive,
-        //       ),
-        //     }),
-        //     updatesFromFriends: new FormGroup({
-        //       push: new FormControl(
-        //         settings['updatesFromFriends'].find(
-        //           (val: Notification) => val.type === 'Push',
-        //         ).isActive,
-        //       ),
-        //       email: new FormControl(
-        //         settings['updatesFromFriends'].find(
-        //           (val: Notification) => val.type === 'Email',
-        //         ).isActive,
-        //       ),
-        //       sms: new FormControl(
-        //         settings['updatesFromFriends'].find(
-        //           (val: Notification) => val.type === 'SMS',
-        //         ).isActive,
-        //       ),
-        //     }),
-        //     friendsRequests: new FormGroup({
-        //       push: new FormControl(
-        //         settings['friendsRequests'].find(
-        //           (val: Notification) => val.type === 'Push',
-        //         ).isActive,
-        //       ),
-        //       email: new FormControl(
-        //         settings['friendsRequests'].find(
-        //           (val: Notification) => val.type === 'Email',
-        //         ).isActive,
-        //       ),
-        //       sms: new FormControl(
-        //         settings['friendsRequests'].find(
-        //           (val: Notification) => val.type === 'SMS',
-        //         ).isActive,
-        //       ),
-        //     }),
-        //   });
-
-        //   // this.notificationSettingsForm.patchValue(settings);
-        // },
+          this.notificationSettingsForm.patchValue({
+            ...settings,
+          });
+        },
         error: () => this.loadingStatus.set('error'),
         complete: () => this.loadingStatus.set('success'),
       });
