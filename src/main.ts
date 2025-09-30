@@ -11,12 +11,16 @@ if (isDevMode()) {
   import('./mocks/browser').then(({ worker }) => {
     worker.start().then(() => {
       bootstrapApplication(AppComponent, appConfig).catch((err) =>
-        console.error(err)
+        console.error(err),
       );
     });
   });
 } else {
   bootstrapApplication(AppComponent, appConfig).catch((err) =>
-    console.error(err)
+    console.error(err),
   );
 }
+
+// bootstrapApplication(AppComponent, appConfig).catch((err) =>
+//   console.error(err),
+// );

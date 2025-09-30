@@ -27,7 +27,7 @@ export class NotificationSettingsService {
 
   loadNotificationSettings() {
     return this.fetchNotificationSettings(
-      'http://localhost:4200/api/notification-settings',
+      'https://www.greatfrontend.com/api/projects/challenges/account/notifications',
     ).pipe(
       map((response: any) => response.preferences),
       tap({
@@ -40,8 +40,20 @@ export class NotificationSettingsService {
 
   putUpdatedNotificationSettings(body: any) {
     return this.updateNotificationSettings(
-      'http://localhost:4200/api/notification-settings',
-      body,
+      'https://www.greatfrontend.com/api/projects/challenges/account/notifications',
+      { preferences: body },
+    ).pipe(
+      map((response: any) => {
+        if (response?.error) {
+          throw Error('Invalid notifications preferences.');
+        }
+        return response.preferences;
+      }),
+      tap({
+        next: (response) => {
+          this.notificationSettings.set(response);
+        },
+      }),
     );
   }
 }
