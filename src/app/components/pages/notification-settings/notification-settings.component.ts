@@ -1,7 +1,6 @@
 import { Component, signal, inject, OnInit, DestroyRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { type Notification } from '../../../types/notification.model';
 import { ToastComponent } from '../../shared/toast/toast.component';
 import { BackendErrorComponent } from '../../shared/error/backend-error/backend-error.component';
 import { ButtonComponent } from '../../shared/button/button.component';
@@ -29,12 +28,12 @@ export class NotificationSettingsComponent implements OnInit {
 
   // on ngOnInit, will set these values based on 'api' call
   notificationSettingsForm = new FormGroup({
-    marketingAndPromotionalContent: new FormGroup({
+    marketing: new FormGroup({
       push: new FormControl(false),
       email: new FormControl(false),
       sms: new FormControl(false),
     }),
-    featureUpdates: new FormGroup({
+    features: new FormGroup({
       push: new FormControl(false),
       email: new FormControl(false),
       sms: new FormControl(false),
@@ -44,52 +43,24 @@ export class NotificationSettingsComponent implements OnInit {
       email: new FormControl(false),
       sms: new FormControl(false),
     }),
-    updatesFromFriends: new FormGroup({
+    friend_updates: new FormGroup({
       push: new FormControl(false),
       email: new FormControl(false),
       sms: new FormControl(false),
     }),
-    friendsRequests: new FormGroup({
+    friend_requests: new FormGroup({
       push: new FormControl(false),
       email: new FormControl(false),
       sms: new FormControl(false),
     }),
   });
 
-  loadedNotificationTypes =
-    this.notificationSettingsService.loadedNotificationTypes;
-
-  loadedNotificationSettings =
-    this.notificationSettingsService.loadedNotificationSettings;
-
   ngOnInit() {
     const subscription = this.notificationSettingsService
       .loadNotificationSettings()
       .subscribe({
         next: (val) => {
-          const settings = { ...val.settings };
-          const controlNames = Object.keys(settings);
-
-          controlNames.forEach((controlName) => {
-            settings[controlName] = settings[controlName].reduce(
-              (
-                a: {
-                  [type: string]: {};
-                },
-                c: Notification,
-              ) => {
-                const notificationType = c.type.toLowerCase();
-                const isActive = c.isActive;
-                a[notificationType] = isActive;
-                return a;
-              },
-              {},
-            );
-          });
-
-          this.notificationSettingsForm.patchValue({
-            ...settings,
-          });
+          this.notificationSettingsForm.patchValue(val);
         },
         error: () => this.loadingStatus.set('error'),
         complete: () => this.loadingStatus.set('success'),
@@ -98,6 +69,13 @@ export class NotificationSettingsComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
+  }
+
+  renderNotificationOptions(controlName: string) {
+    const loadedNotificationSettings =
+      this.notificationSettingsService.loadedNotificationSettings();
+
+    return Object.entries(loadedNotificationSettings[controlName]);
   }
 
   updateSettings(formGroupName: string, controlName: string) {
@@ -119,6 +97,9 @@ export class NotificationSettingsComponent implements OnInit {
     const subscription = this.notificationSettingsService
       .putUpdatedNotificationSettings(this.notificationSettingsForm.value)
       .subscribe({
+        next: (val) => {
+          this.notificationSettingsForm.patchValue(val);
+        },
         complete: () => {
           this.formStatus.set('success');
           this.notificationSettingsForm.markAsPristine();

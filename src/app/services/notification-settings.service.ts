@@ -1,11 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
-import {
-  type NotificationType,
-  type NotificationSettings,
-} from '../types/notification.model';
+import { type NotificationSettings } from '../types/notification.model';
 
 /*
   what the form is supposed to do:
@@ -16,16 +13,8 @@ import {
 @Injectable({ providedIn: 'root' })
 export class NotificationSettingsService {
   private httpClient = inject(HttpClient);
-  private notificationTypes = signal<NotificationType[]>([]);
-  private notificationSettings = signal<NotificationSettings>({
-    comments: [],
-    ['featureUpdates']: [],
-    ['friendsRequests']: [],
-    ['marketingAndPromotionalContent']: [],
-    ['updatesFromFriends']: [],
-  });
+  private notificationSettings = signal<NotificationSettings>({});
 
-  loadedNotificationTypes = this.notificationTypes.asReadonly();
   loadedNotificationSettings = this.notificationSettings.asReadonly();
 
   private fetchNotificationSettings(url: string) {
@@ -40,57 +29,19 @@ export class NotificationSettingsService {
     return this.fetchNotificationSettings(
       'http://localhost:4200/api/notification-settings',
     ).pipe(
+      map((response: any) => response.preferences),
       tap({
-        next: (response: any) => {
-          this.notificationTypes.set(response['types']);
-          this.notificationSettings.set(response['settings']);
+        next: (response) => {
+          this.notificationSettings.set(response);
         },
       }),
     );
   }
 
   putUpdatedNotificationSettings(body: any) {
-    const reformattedUpdatedForm = { ...this.notificationSettings() };
-    reformattedUpdatedForm['comments'] = reformattedUpdatedForm['comments'].map(
-      (setting) => {
-        const type = setting.type.toLowerCase();
-        return { ...setting, isActive: body['comments'][type] };
-      },
-    );
-    reformattedUpdatedForm['featureUpdates'] = reformattedUpdatedForm[
-      'featureUpdates'
-    ].map((setting) => {
-      const type = setting.type.toLowerCase();
-      return { ...setting, isActive: body['featureUpdates'][type] };
-    });
-    reformattedUpdatedForm['friendsRequests'] = reformattedUpdatedForm[
-      'friendsRequests'
-    ].map((setting) => {
-      const type = setting.type.toLowerCase();
-      return { ...setting, isActive: body['friendsRequests'][type] };
-    });
-
-    reformattedUpdatedForm['marketingAndPromotionalContent'] =
-      reformattedUpdatedForm['marketingAndPromotionalContent'].map(
-        (setting) => {
-          const type = setting.type.toLowerCase();
-          return {
-            ...setting,
-            isActive: body['marketingAndPromotionalContent'][type],
-          };
-        },
-      );
-
-    reformattedUpdatedForm['updatesFromFriends'] = reformattedUpdatedForm[
-      'updatesFromFriends'
-    ].map((setting) => {
-      const type = setting.type.toLowerCase();
-      return { ...setting, isActive: body['updatesFromFriends'][type] };
-    });
-
     return this.updateNotificationSettings(
       'http://localhost:4200/api/notification-settings',
-      reformattedUpdatedForm,
+      body,
     );
   }
 }

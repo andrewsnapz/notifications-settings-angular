@@ -1,21 +1,9 @@
 export type Notification = {
-  id: string;
-  group: string;
-  type: string;
-  isActive: boolean;
+  email: boolean;
+  push: boolean;
+  sms: boolean;
 };
 
 export type NotificationSettings = {
-  comments: Notification[];
-  ['featureUpdates']: Notification[];
-  ['friendsRequests']: Notification[];
-  ['marketingAndPromotionalContent']: Notification[];
-  ['updatesFromFriends']: Notification[];
-};
-
-export type NotificationType = 'Push' | 'Email' | 'SMS';
-
-export type NotificationResponse = {
-  types: NotificationType[];
-  settings: NotificationSettings;
+  [type: string]: Notification;
 };
