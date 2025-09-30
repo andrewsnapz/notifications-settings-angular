@@ -35,9 +35,8 @@ function updateNotificationSettings(config: ConfigurationOptions) {
   }
   return http.put('/api/notification-settings', async ({ request }) => {
     const updatedForm: any = await request.json();
-
     modifyNotificationSettings(updatedForm);
-    return HttpResponse.json({ updatedForm }, { status: 200 });
+    return HttpResponse.json(updatedForm, { status: 200 });
   });
 }
 

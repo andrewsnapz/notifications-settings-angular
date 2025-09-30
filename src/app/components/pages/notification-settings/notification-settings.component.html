@@ -27,149 +27,133 @@
             <th id="notification-name">
               <span class="visually-hidden">notification type</span>
             </th>
-            @for (
-              notificationType of loadedNotificationTypes();
-              track notificationType
-            ) {
-              <th [id]="notificationType">{{ notificationType }}</th>
-            }
+            <th id="push">Push</th>
+            <th id="email">Email</th>
+            <th id="sms">SMS</th>
           </tr>
         </thead>
         <tbody class="notification-settings-form-table-body">
-          <tr>
-            <td headers="notification-name">Marketing & promotional content</td>
+          <tr headers="notification-name">
+            <td>Marketing & promotional content</td>
             @for (
-              data of loadedNotificationSettings()[
-                "marketingAndPromotionalContent"
-              ];
-              track data.id
+              setting of renderNotificationOptions("marketing");
+              track setting[0]
             ) {
-              <td [headers]="data.type">
+              <td [headers]="setting[0]">
                 <app-toggle
-                  [id]="data.id"
+                  [id]="'marketing-' + setting[0]"
                   size="sm"
                   labelActiveText="on"
                   labelDeactiveText="off"
                   [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
                   [isToggled]="
-                    notificationSettingsForm
-                      .get('marketingAndPromotionalContent')!
-                      .get(data.type.toLowerCase())!.value
+                    this.notificationSettingsForm
+                      .get('marketing')
+                      ?.get(setting[0])?.value
                   "
                   [isDisabled]="false"
-                  (onToggle)="
-                    updateSettings(
-                      'marketingAndPromotionalContent',
-                      data.type.toLowerCase()
-                    )
-                  "
+                  (onToggle)="updateSettings('marketing', setting[0])"
                 />
               </td>
             }
           </tr>
           <tr>
-            <td headers="notification-name">Feature updates</td>
+            <td>Feature updates</td>
             @for (
-              data of loadedNotificationSettings()["featureUpdates"];
-              track data.id
+              setting of renderNotificationOptions("features");
+              track setting[0]
             ) {
-              <td [headers]="data.type">
+              <td [headers]="setting[0]">
                 <app-toggle
-                  [id]="data.id"
+                  [id]="'features-' + setting[0]"
                   size="sm"
                   labelActiveText="on"
                   labelDeactiveText="off"
                   [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
                   [isToggled]="
-                    notificationSettingsForm
-                      .get('featureUpdates')!
-                      .get(data.type.toLowerCase())!.value
+                    this.notificationSettingsForm
+                      .get('features')
+                      ?.get(setting[0])?.value
                   "
                   [isDisabled]="false"
-                  (onToggle)="
-                    updateSettings('featureUpdates', data.type.toLowerCase())
-                  "
+                  (onToggle)="updateSettings('features', setting[0])"
                 />
               </td>
             }
           </tr>
           <tr>
-            <td headers="notification-name">Comments</td>
+            <td>Comments</td>
             @for (
-              data of loadedNotificationSettings()["comments"];
-              track data.id
+              setting of renderNotificationOptions("comments");
+              track setting[0]
             ) {
-              <td [headers]="data.type">
+              <td [headers]="setting[0]">
                 <app-toggle
-                  [id]="data.id"
+                  [id]="'comments-' + setting[0]"
                   size="sm"
                   labelActiveText="on"
                   labelDeactiveText="off"
                   [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
                   [isToggled]="
-                    notificationSettingsForm
-                      .get('comments')!
-                      .get(data.type.toLowerCase())!.value
+                    this.notificationSettingsForm
+                      .get('comments')
+                      ?.get(setting[0])?.value
                   "
                   [isDisabled]="false"
-                  (onToggle)="
-                    updateSettings('comments', data.type.toLowerCase())
-                  "
+                  (onToggle)="updateSettings('comments', setting[0])"
                 />
               </td>
             }
           </tr>
           <tr>
-            <td headers="notification-name">Updates from friends</td>
+            <td>Update from friends</td>
             @for (
-              data of loadedNotificationSettings()["updatesFromFriends"];
-              track data.id
+              setting of renderNotificationOptions("friend_updates");
+              track setting[0]
             ) {
-              <td [headers]="data.type">
+              <td [headers]="setting[0]">
                 <app-toggle
-                  [id]="data.id"
+                  [id]="'friend_updates-' + setting[0]"
                   size="sm"
                   labelActiveText="on"
                   labelDeactiveText="off"
                   [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
                   [isToggled]="
-                    notificationSettingsForm
-                      .get('updatesFromFriends')!
-                      .get(data.type.toLowerCase())!.value
+                    this.notificationSettingsForm
+                      .get('friend_updates')
+                      ?.get(setting[0])?.value
                   "
                   [isDisabled]="false"
-                  (onToggle)="
-                    updateSettings(
-                      'updatesFromFriends',
-                      data.type.toLowerCase()
-                    )
-                  "
+                  (onToggle)="updateSettings('friend_updates', setting[0])"
                 />
               </td>
             }
           </tr>
           <tr>
-            <td headers="notification-name">Friends requests</td>
+            <td>Friends requests</td>
             @for (
-              data of loadedNotificationSettings()["friendsRequests"];
-              track data.id
+              setting of renderNotificationOptions("friend_requests");
+              track setting[0]
             ) {
-              <td [headers]="data.type">
+              <td [headers]="setting[0]">
                 <app-toggle
-                  [id]="data.id"
+                  [id]="'friend_requests-' + setting[0]"
                   size="sm"
                   labelActiveText="on"
                   labelDeactiveText="off"
                   [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
                   [isToggled]="
-                    notificationSettingsForm
-                      .get('friendsRequests')!
-                      .get(data.type.toLowerCase())!.value
+                    this.notificationSettingsForm
+                      .get('friend_requests')
+                      ?.get(setting[0])?.value
                   "
                   [isDisabled]="false"
-                  (onToggle)="
-                    updateSettings('friendsRequests', data.type.toLowerCase())
-                  "
+                  (onToggle)="updateSettings('friend_requests', setting[0])"
                 />
               </td>
             }
