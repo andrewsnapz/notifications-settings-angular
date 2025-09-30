@@ -17,27 +17,41 @@ type ConfigurationOptions = {
 */
 function getNotificationSettings(config: ConfigurationOptions) {
   if (config.error) {
-    return http.get('/api/notification-settings', () => {
-      return HttpResponse.error();
-    });
+    return http.get(
+      'https://www.greatfrontend.com/api/projects/challenges/account/notifications',
+      () => {
+        return HttpResponse.error();
+      },
+    );
   }
 
-  return http.get('/api/notification-settings', () => {
-    return HttpResponse.json(notificationSettings);
-  });
+  return http.get(
+    'https://www.greatfrontend.com/api/projects/challenges/account/notifications',
+    () => {
+      return HttpResponse.json(notificationSettings);
+    },
+  );
 }
 
 function updateNotificationSettings(config: ConfigurationOptions) {
   if (config.error) {
-    return http.put('/api/notification-settings', () => {
-      return HttpResponse.error();
-    });
+    return http.put(
+      'https://www.greatfrontend.com/api/projects/challenges/account/notifications',
+      () => {
+        return HttpResponse.json({
+          error: 'Invalid notifications preferences.',
+        });
+      },
+    );
   }
-  return http.put('/api/notification-settings', async ({ request }) => {
-    const updatedForm: any = await request.json();
-    modifyNotificationSettings(updatedForm);
-    return HttpResponse.json(updatedForm, { status: 200 });
-  });
+  return http.put(
+    'https://www.greatfrontend.com/api/projects/challenges/account/notifications',
+    async ({ request }) => {
+      const updatedForm: any = await request.json();
+      modifyNotificationSettings(updatedForm);
+      return HttpResponse.json(updatedForm, { status: 200 });
+    },
+  );
 }
 
 export const handlers = [
@@ -45,5 +59,5 @@ export const handlers = [
     error: false,
     response: notificationSettings,
   }),
-  updateNotificationSettings({ error: false }),
+  updateNotificationSettings({ error: true }),
 ];
