@@ -35,6 +35,10 @@ jobs:
         uses: actions/setup-node@v4
       - name: install dependencies
         run: npm install
+      - name: setup author identity
+        run: |
+          git config user.email "andyrpg@gmail.com"
+          git config user.name "andrewsnapz"
       - name: deploy
         run: npm run deploy
       - name: Setup Pages
