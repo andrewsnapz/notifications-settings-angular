@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=https://github.com/andrewsnapz/notifications-settings-angular",
+    "build": "ng build --base-href=/https://github.com/andrewsnapz/notifications-settings-angular/",
     "deploy": "ng deploy --base-href=/https://github.com/andrewsnapz/notifications-settings-angular/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
