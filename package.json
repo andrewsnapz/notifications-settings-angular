@@ -1,6 +1,7 @@
 {
   "name": "notifications-settings",
   "version": "0.0.0",
+  "homepage": "https://andrewsnapz.github.io/notification-settings",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
