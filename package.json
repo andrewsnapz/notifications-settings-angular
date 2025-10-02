@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "ng deploy --repo=https://github.com/andrewsnapz/notification-settings-angular.git --name=andrewsnapz --email=andyrpg@gmail.com",
+    "deploy": "ng deploy --repo=https://github.com/andrewsnapz/notifications-settings-angular --name=andrewsnapz --email=andyrpg@gmail.com",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
