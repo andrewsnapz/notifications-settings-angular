@@ -35,6 +35,8 @@ jobs:
         uses: actions/setup-node@v4
       - name: install dependencies
         run: npm install
+      - name: clear gh-pages cache
+        run: npx gh-pages-clean
       - name: build
         run: npm run deploy
       - name: Setup Pages
