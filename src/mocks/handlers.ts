@@ -59,5 +59,5 @@ export const handlers = [
     error: false,
     response: notificationSettings,
   }),
-  updateNotificationSettings({ error: true }),
+  updateNotificationSettings({ error: false }),
 ];

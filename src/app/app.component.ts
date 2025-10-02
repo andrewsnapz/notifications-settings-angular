@@ -11,7 +11,4 @@ import { PageLayoutComponent } from './components/layout/page-layout/page-layout
 })
 export class AppComponent {
   title = 'notifications-settings';
-
-  onActiveToggle() {}
-  onDeactiveToggle() {}
 }
