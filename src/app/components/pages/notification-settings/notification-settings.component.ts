@@ -93,7 +93,6 @@ export class NotificationSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    // need to send id and
     const subscription = this.notificationSettingsService
       .putUpdatedNotificationSettings(this.notificationSettingsForm.value)
       .subscribe({
