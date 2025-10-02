@@ -1,0 +1,190 @@
+@if (loadingStatus() === "loading") {
+  <p>Loading Notification Settings...</p>
+} @else if (loadingStatus() === "error") {
+  <app-backend-error />
+} @else {
+  <div class="notification-settings">
+    <div class="notification-settings-header">
+      <h1 class="notification-settings-header-heading">
+        Manage Your Notifications
+      </h1>
+      <p class="notification-settings-header-description">
+        Choose how you want to be notified about the latest updates and
+        messages.
+      </p>
+    </div>
+    <form
+      class="notification-settings-form"
+      [formGroup]="notificationSettingsForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <table
+        class="notification-settings-form-table"
+        aria-label="notification-settings"
+      >
+        <thead class="notification-settings-form-table-header">
+          <tr>
+            <th id="notification-name">
+              <span class="visually-hidden">notification type</span>
+            </th>
+            <th id="push">Push</th>
+            <th id="email">Email</th>
+            <th id="sms">SMS</th>
+          </tr>
+        </thead>
+        <tbody class="notification-settings-form-table-body">
+          <tr headers="notification-name">
+            <td>Marketing & promotional content</td>
+            @for (
+              setting of renderNotificationOptions("marketing");
+              track setting[0]
+            ) {
+              <td [headers]="setting[0]">
+                <app-toggle
+                  [id]="'marketing-' + setting[0]"
+                  size="sm"
+                  labelActiveText="on"
+                  labelDeactiveText="off"
+                  [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
+                  [isToggled]="
+                    this.notificationSettingsForm
+                      .get('marketing')
+                      ?.get(setting[0])?.value
+                  "
+                  [isDisabled]="false"
+                  (onToggle)="updateSettings('marketing', setting[0])"
+                />
+              </td>
+            }
+          </tr>
+          <tr>
+            <td>Feature updates</td>
+            @for (
+              setting of renderNotificationOptions("features");
+              track setting[0]
+            ) {
+              <td [headers]="setting[0]">
+                <app-toggle
+                  [id]="'features-' + setting[0]"
+                  size="sm"
+                  labelActiveText="on"
+                  labelDeactiveText="off"
+                  [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
+                  [isToggled]="
+                    this.notificationSettingsForm
+                      .get('features')
+                      ?.get(setting[0])?.value
+                  "
+                  [isDisabled]="false"
+                  (onToggle)="updateSettings('features', setting[0])"
+                />
+              </td>
+            }
+          </tr>
+          <tr>
+            <td>Comments</td>
+            @for (
+              setting of renderNotificationOptions("comments");
+              track setting[0]
+            ) {
+              <td [headers]="setting[0]">
+                <app-toggle
+                  [id]="'comments-' + setting[0]"
+                  size="sm"
+                  labelActiveText="on"
+                  labelDeactiveText="off"
+                  [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
+                  [isToggled]="
+                    this.notificationSettingsForm
+                      .get('comments')
+                      ?.get(setting[0])?.value
+                  "
+                  [isDisabled]="false"
+                  (onToggle)="updateSettings('comments', setting[0])"
+                />
+              </td>
+            }
+          </tr>
+          <tr>
+            <td>Update from friends</td>
+            @for (
+              setting of renderNotificationOptions("friend_updates");
+              track setting[0]
+            ) {
+              <td [headers]="setting[0]">
+                <app-toggle
+                  [id]="'friend_updates-' + setting[0]"
+                  size="sm"
+                  labelActiveText="on"
+                  labelDeactiveText="off"
+                  [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
+                  [isToggled]="
+                    this.notificationSettingsForm
+                      .get('friend_updates')
+                      ?.get(setting[0])?.value
+                  "
+                  [isDisabled]="false"
+                  (onToggle)="updateSettings('friend_updates', setting[0])"
+                />
+              </td>
+            }
+          </tr>
+          <tr>
+            <td>Friends requests</td>
+            @for (
+              setting of renderNotificationOptions("friend_requests");
+              track setting[0]
+            ) {
+              <td [headers]="setting[0]">
+                <app-toggle
+                  [id]="'friend_requests-' + setting[0]"
+                  size="sm"
+                  labelActiveText="on"
+                  labelDeactiveText="off"
+                  [isLabelHidden]="true"
+                  [isToggled]="setting[1]"
+                  [isToggled]="
+                    this.notificationSettingsForm
+                      .get('friend_requests')
+                      ?.get(setting[0])?.value
+                  "
+                  [isDisabled]="false"
+                  (onToggle)="updateSettings('friend_requests', setting[0])"
+                />
+              </td>
+            }
+          </tr>
+        </tbody>
+      </table>
+      <div class="notification-settings-footer">
+        <button
+          appButton
+          type="submit"
+          buttonType="primary"
+          size="xl"
+          [disabled]="!this.notificationSettingsForm.dirty"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+
+    @if (formStatus() === "success") {
+      <app-toast
+        type="success"
+        title="Success"
+        message="Changes saved successfully!"
+      />
+    } @else if (formStatus() === "error") {
+      <app-toast
+        type="failure"
+        title="Error"
+        message="Unexpected error. Please try again later or contact support."
+      />
+    }
+  </div>
+}

@@ -1,0 +1,17 @@
+@use "../../../../styles/variables/colors" as colors;
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: colors.$background-primary;
+
+  @media (min-width: 768px) {
+    padding-inline: 32px;
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: 32px;
+  }
+}
