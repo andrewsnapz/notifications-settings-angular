@@ -1,12 +1,11 @@
 {
   "name": "notifications-settings",
   "version": "0.0.0",
-  "homepage": "https://andrewsnapz.github.io/notification-settings",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --base-href=https://github.com/andrewsnapz/notifications-settings-angular",
-    "deploy": "ng deploy --repo=https://github.com/andrewsnapz/notifications-settings-angular --name=andrewsnapz --email=andyrpg@gmail.com",
+    "deploy": "ng deploy --base-ref=https://github.com/andrewsnapz/notifications-settings-angular",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
