@@ -42,8 +42,8 @@ jobs:
           git config user.email "andyrpg@gmail.com"
           git config user.name "andrewsnapz"
 
-      - name: Deploy
-        run: npm run deploy
+      - name: Build
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
